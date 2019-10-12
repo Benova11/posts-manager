@@ -7,6 +7,7 @@ import { MatInputModule,
          MatButtonModule,
          MatToolbarModule,
         MatExpansionModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts_/post-create/post-create.component';
@@ -28,7 +29,8 @@ import { PostListComponent } from './posts_/post-list/post-list.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
