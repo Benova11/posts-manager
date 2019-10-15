@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['post-list.component.css']
 })
 
-export class PostListComponent implements OnInit,OnDestroy {
+export class PostListComponent implements OnInit, OnDestroy {
   /*
   posts = [
     { title: 'First Post' , content: 'this is the first post\'s content' },
@@ -30,6 +30,10 @@ export class PostListComponent implements OnInit,OnDestroy {
       .subscribe((posts: Post[]) => {
         this.posts = posts;
       });
+ }
+
+ onDelete(postId: string) {
+  this.postsService.deletePost(postId);
  }
 
  ngOnDestroy() {
