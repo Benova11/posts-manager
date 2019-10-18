@@ -19,7 +19,7 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   isLoading = false;
   form: FormGroup;
-  imagePreview: SafeUrl;
+  imagePreview: SafeUrl | any;
   private mode = 'create';
   private postId: string;
 
