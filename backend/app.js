@@ -8,7 +8,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://ben:qwnFqSkW5T5ZLJwI@cluster0-cygo9.mongodb.net/node-angular?retryWrites=true&w=majority").then(() => {
+mongoose.connect("mongodb+srv://ben:"+process.env.MONGO_ATLAS_PW+"@cluster0-cygo9.mongodb.net/node-angular?retryWrites=true&w=majority", {useNewUrlParser: true}).then(() => {
   console.log('Connected to database');
 }).catch(() => {
   console.log('Connection failed')
@@ -16,7 +16,8 @@ mongoose.connect("mongodb+srv://ben:qwnFqSkW5T5ZLJwI@cluster0-cygo9.mongodb.net/
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use("/images", express.static(path.join("backend/images")));
+app.use("/images", express.static(path.join("images")));
+app.use("/", express.static(path.join(__dirname,"angular")));
 
 app.use((req, res ,next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -27,5 +28,8 @@ app.use((req, res ,next) => {
 
 app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
+app.use((req, res, next ) => {
+  res.sendFile(path.join(__dirname, "angular", "index.html"));
+});
 
 module.exports = app;
